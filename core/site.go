@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"os"
 	"strings"
 	"sync"
 	"testing"
@@ -768,6 +769,14 @@ func (site *Site) updateMeters() error {
 
 	if sponsor.IsAuthorized() {
 		go site.optimizerUpdateAsync()
+	}
+
+	// A/B shadow evaluation: call both MILP and ML optimizers in parallel
+	// and persist the results for empirical comparison. Activated by setting
+	// the ML_OPTIMIZER_URI environment variable. Independent rate limiter
+	// from the MILP optimizer above.
+	if os.Getenv("ML_OPTIMIZER_URI") != "" {
+		go site.abOptimizerUpdateAsync()
 	}
 
 	return nil

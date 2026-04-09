@@ -109,12 +109,10 @@ func (site *Site) optimizerUpdateAsync() {
 	err = site.optimizerUpdate(site.battery.Devices)
 }
 
-func (site *Site) optimizerUpdate(battery []types.Measurement) error {
-	uri := os.Getenv("OPTIMIZER_URI")
-	if uri == "" {
-		return nil
-	}
-
+// buildOptimizerRequest assembles the OptimizationInput from current site
+// state. Used by both the MILP optimizer integration and the A/B shadow
+// evaluation harness so that both operate on identical inputs.
+func (site *Site) buildOptimizerRequest(battery []types.Measurement) (*optimizer.OptimizationInput, *requestDetails, error) {
 	solarTariff := site.GetTariff(api.TariffUsageSolar)
 	solar := currentRates(solarTariff)
 
@@ -127,7 +125,7 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 		minLen = min(minLen, len(solar))
 	}
 	if minLen < 8 {
-		return fmt.Errorf("not enough slots for optimization: %d (grid=%d, feedIn=%d, solar=%d)", minLen, len(grid), len(feedIn), len(solar))
+		return nil, nil, fmt.Errorf("not enough slots for optimization: %d (grid=%d, feedIn=%d, solar=%d)", minLen, len(grid), len(feedIn), len(solar))
 	}
 
 	dt := timeSteps(minLen)
@@ -142,7 +140,7 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 
 	gt, err := site.homeProfile(minLen)
 	if err != nil {
-		return err
+		return nil, nil, err
 	}
 
 	// allow empty solar forecast
@@ -150,7 +148,7 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 	if solarTariff != nil {
 		solarEnergy, err := solarRatesToEnergy(solar)
 		if err != nil {
-			return err
+			return nil, nil, err
 		}
 
 		ft = prorate(scaleAndPrune(solarEnergy, 1, minLen), firstSlotDuration)
@@ -217,6 +215,20 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 		add(site.batteryRequest(dev, b, grid, minLen, firstSlotDuration))
 	}
 
+	return &req, &details, nil
+}
+
+func (site *Site) optimizerUpdate(battery []types.Measurement) error {
+	uri := os.Getenv("OPTIMIZER_URI")
+	if uri == "" {
+		return nil
+	}
+
+	req, details, err := site.buildOptimizerRequest(battery)
+	if err != nil {
+		return err
+	}
+
 	httpClient := request.NewClient(site.log)
 	httpClient.Timeout = 30 * time.Second
 
@@ -225,7 +237,7 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 		return err
 	}
 
-	resp, err := apiClient.PostOptimizeChargeScheduleWithResponse(context.TODO(), req, func(_ context.Context, req *http.Request) error {
+	resp, err := apiClient.PostOptimizeChargeScheduleWithResponse(context.TODO(), *req, func(_ context.Context, req *http.Request) error {
 		if sponsor.IsAuthorized() {
 			req.Header.Set("Authorization", "Bearer "+sponsor.Token)
 		}
@@ -248,9 +260,9 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 		Res     optimizer.OptimizationResult `json:"res"`
 		Details requestDetails               `json:"details"`
 	}{
-		Req:     req,
+		Req:     *req,
 		Res:     *resp.JSON200,
-		Details: details,
+		Details: *details,
 	})
 
 	var batteries []batteryResult
