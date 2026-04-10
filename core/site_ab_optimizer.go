@@ -107,7 +107,7 @@ func runAbOptimizers(
 		return 0, nil, fmt.Errorf("ab optimizer: persist run: %w", err)
 	}
 
-	log.DEBUG.Printf("ab optimizer: run %d started with %d backends (horizon=%d, slot=%s)",
+	log.INFO.Printf("ab optimizer: run %d started with %d backends (horizon=%d, slot=%s)",
 		runID, len(backends), horizon, slotDur)
 
 	results := make([]AbOptimizerResult, len(backends))
@@ -132,10 +132,10 @@ func runAbOptimizers(
 			results[idx] = result
 
 			if result.Err != nil {
-				log.DEBUG.Printf("ab optimizer: %s failed after %s: %v",
+				log.INFO.Printf("ab optimizer: %s failed after %s: %v",
 					backend.Source, result.Duration, result.Err)
 			} else {
-				log.DEBUG.Printf("ab optimizer: %s %s after %s (objective=%v)",
+				log.INFO.Printf("ab optimizer: %s %s after %s (objective=%v)",
 					backend.Source, result.Status, result.Duration, result.ObjectiveValue)
 			}
 

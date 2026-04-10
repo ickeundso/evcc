@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"os"
 	"sync/atomic"
@@ -9,7 +10,6 @@ import (
 
 	"github.com/evcc-io/evcc/util/request"
 	"github.com/evcc-io/evcc/util/sponsor"
-	optimizer "github.com/evcc-io/optimizer/client"
 )
 
 // A/B optimizer runner — wires the shadow evaluation harness from
@@ -19,6 +19,7 @@ import (
 var (
 	abUpdated time.Time
 	abMu      atomic.Uint32
+	abStarted bool // one-time flag for the first-run INFO log
 )
 
 // abOptimizerUpdateAsync is the goroutine-safe entry point called from
@@ -55,6 +56,17 @@ func (site *Site) abOptimizerUpdate() error {
 	mlURI := os.Getenv("ML_OPTIMIZER_URI")
 	if mlURI == "" {
 		return nil
+	}
+
+	// One-time startup confirmation so the user can see the feature is active
+	// without switching to DEBUG log level.
+	if !abStarted {
+		abStarted = true
+		backends := fmt.Sprintf("ML=%s", mlURI)
+		if milpURI := os.Getenv("OPTIMIZER_URI"); milpURI != "" {
+			backends = fmt.Sprintf("MILP=%s, %s", milpURI, backends)
+		}
+		site.log.INFO.Printf("ab optimizer: shadow evaluation active (%s)", backends)
 	}
 
 	req, _, err := site.buildOptimizerRequest(site.battery.Devices)
@@ -95,9 +107,9 @@ func (site *Site) abOptimizerUpdate() error {
 
 	for _, r := range results {
 		if r.Err != nil {
-			site.log.DEBUG.Printf("ab optimizer: run %d %s error: %v", runID, r.Source, r.Err)
+			site.log.INFO.Printf("ab optimizer: run %d %s error: %v", runID, r.Source, r.Err)
 		} else {
-			site.log.DEBUG.Printf("ab optimizer: run %d %s %s (objective=%.4f, %s)",
+			site.log.INFO.Printf("ab optimizer: run %d %s %s (objective=%.4f, %s)",
 				runID, r.Source, r.Status,
 				func() float64 {
 					if r.ObjectiveValue != nil {
@@ -110,15 +122,4 @@ func (site *Site) abOptimizerUpdate() error {
 	}
 
 	return nil
-}
-
-// sponsorAuthFn returns an optimizer.RequestEditorFn that attaches the
-// sponsor bearer token when available.
-func sponsorAuthFn() optimizer.RequestEditorFn {
-	return func(_ context.Context, req *http.Request) error {
-		if sponsor.IsAuthorized() {
-			req.Header.Set("Authorization", "Bearer "+sponsor.Token)
-		}
-		return nil
-	}
 }
