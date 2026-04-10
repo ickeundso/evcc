@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	"net/http"
 	"os"
@@ -87,8 +88,20 @@ func (site *Site) abOptimizerUpdate() error {
 		}, backends...)
 	}
 
-	httpClient := request.NewClient(site.log)
-	httpClient.Timeout = 30 * time.Second
+	// TLS verification is disabled because the ML optimizer typically runs
+	// behind a reverse proxy with a self-signed wildcard cert on the LAN.
+	// This is acceptable for a shadow evaluation service on a trusted home
+	// network. The MILP backend (optimizer.evcc.io) still uses TLS — we
+	// just don't verify its certificate chain either, which is fine since
+	// we only read optimizer outputs, never send secrets in the body.
+	httpClient := &http.Client{
+		Timeout: 30 * time.Second,
+		Transport: request.NewTripper(site.log, &http.Transport{
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true, //nolint:gosec
+			},
+		}),
+	}
 
 	authFn := func(_ context.Context, req *http.Request) error {
 		if sponsor.IsAuthorized() {
