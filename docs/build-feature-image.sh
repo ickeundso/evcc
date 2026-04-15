@@ -11,7 +11,7 @@ set -euo pipefail
 #   - GHCR_TOKEN env var or `gh auth token` for ghcr.io authentication
 
 GHCR_IMAGE="ghcr.io/ickeundso/evcc-feature"
-VERSION="0.303.2-use-ml.4"
+VERSION="0.303.2-use-ml.5"
 
 # Determine platform - default amd64, override with PLATFORM env var
 PLATFORM="${PLATFORM:-linux/amd64}"
