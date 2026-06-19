@@ -33,8 +33,10 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 | [Core Domain](docs/agents/core-domain.md) | Control loop, loadpoint logic, PV surplus, charge modes, tariffs, interfaces |
 | [Hardware Integrations](docs/agents/hardware-integrations.md) | Charger/meter/vehicle implementations, adding new devices |
 | [Easee Architecture](docs/agents/easee-architecture.md) | Easee charger (REST+SignalR, async correlation, concurrency) |
+| [OCPP Forwarder](docs/agents/ocpp-forwarder.md) | OCPP proxy/forwarder (sidecar relay to upstream OCPP server, read-only mode) |
 | [Plugin System](docs/agents/plugin-system.md) | Plugin layer (HTTP, MQTT, Modbus, SunSpec, JS) |
 | [Web UI & API](docs/agents/web-ui-api.md) | REST API, WebSocket, Vue frontend, authentication |
+| [API Security](docs/agents/api-security.md) | Auth modes, JWT/API key/session, two-tier checks, credential storage |
 
 ### Loading guide by task type
 
@@ -44,6 +46,7 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 - **Vehicle implementation** — hardware-integrations
 - **UI/frontend work** — web-ui-api
 - **API endpoint work** — web-ui-api + core-domain
+- **Auth / login / API key / permissions** — api-security + web-ui-api
 - **Config/template work** — plugin-system
 - **Control loop / charging logic** — core-domain
 - **Bug in any area** — core-domain + relevant topic file(s)
@@ -83,6 +86,21 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 - **tests/** contains Playwright integration tests and test configuration files
 - **dist/** contains built frontend assets (generated)
 
+## Writing Style
+
+- No em dashes (—) in comments, commit messages, or docs. Use periods, commas, or colons
+- Project name is `evcc`, always lowercase
+- Acronyms uppercase in prose: OCPP, MQTT, HEMS, SoC
+- Terminology: German "Phasensaldierung" (meter netting signed power across phases each instant) is "summative energy measurement" in English. Avoid "phase balancing" (means load balancing) and "net metering" (a billing scheme)
+- Commit subjects: `Component: short description`, no trailing period. Sub-scope in parens: `Meter (Home Assistant): ...`. Use `chore:`/`fix:`/`docs:` only for non-feature changes
+
+## Comment Style
+
+- Prefer self-documenting code over comments; comment the *why*, not the *what*
+- Default to no comment. Only add one for a non-obvious constraint, invariant, workaround, or surprising behavior. Keep it to one line, two if necessary
+- Skip refs to the current task, PR, issue, or caller ("added for X flow", "see #1234"). Git history covers that
+- Exception: Go exported identifiers follow godoc convention. Short `// FuncName does X` summary starting with the identifier name
+
 ## Go Coding Standards
 
 ### Core Principles
@@ -101,6 +119,7 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 - `_enumer.go` - generated enum code
 - `*_decorators.go` - generated decorator pattern implementations
 - Validate interface implementations: `var _ Interface = (*Type)(nil)`
+- Capabilities: register via `implement.Has`/`May` only when a capability is *conditional* (runtime/config detection, e.g. `if cp.PhaseSwitching { implement.Has(...) }`). For capabilities present on every code path, declare a plain exported method plus `var _ api.Interface = (*Type)(nil)` instead. `api.Cap` resolves static methods via direct type assertion, so unconditional `implement.Has` is redundant. A type with no conditional capabilities needs neither the `implement.Caps` embed nor `implement.New()`
 
 ### Error Handling
 
@@ -183,6 +202,7 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 - Use placeholders for dynamic content: `{soc}`, `{duration}`, `{value}`
 - Prefer context-specific keys over generic ones
 - Test with German translations (20-40% longer text)
+- Keep separators and trailing punctuation (`: `, `…`, `—`) in the template, not in the translation value.
 
 ### Testing
 
@@ -268,4 +288,20 @@ Deep documentation on specific subsystems is available in `docs/agents/`. Load w
 - Handle concurrent operations safely with Go's concurrency primitives
 - Implement proper caching strategies and connection pooling
 - Avoid blocking operations in main application loop
-- Include appropriate comments for complex business logic
+
+## Pull Request Descriptions
+
+Structure PR descriptions in this order. No headlines. Be concise.
+
+1. **References first line**: link related issues or PRs (`fixes #1123`, `replaces #222`, `pairs with org/repo#345`). PRs should almost always reference an issue or related PR — only skip in rare exceptions (e.g. trivial typo fixes).
+2. **Intro**: one or a few concise sentences framing what the PR does and why it was created this way. The full problem description belongs in the linked issue, not here.
+3. **Bullet list**: most significant changes or user-facing implications. Lead with the most significant.
+4. **TODO section** (only if open points remain):
+
+   ```
+   **TODO**
+   - [ ] item a
+   - [ ] item b
+   ```
+
+Avoid file paths, line numbers, or code listings reproduced from the diff. Include a code snippet only when it conveys the contract (event shape, API signature) more clearly than prose. No testing checklists, no co-author footers, no generator footers.

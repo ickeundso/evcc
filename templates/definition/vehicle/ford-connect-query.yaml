@@ -1,8 +1,11 @@
 template: ford-connect-query
 products:
-  - brand: Ford (FordConnect Query)
+  - brand: Ford
+    description:
+      generic: FordConnect Query
 params:
   - preset: vehicle-common
+  - preset: vehicle-climater
   - name: clientid
     description:
       generic: FordConnect Query Client ID
@@ -41,3 +44,4 @@ render: |
   redirecturi: {{ .redirecturi }}
   {{ include "vehicle-common" . }}
   cache: {{ .cache }}
+  {{ include "vehicle-features" . }}
