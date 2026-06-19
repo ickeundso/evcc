@@ -246,7 +246,7 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 	httpClient := request.NewClient(site.log)
 	httpClient.Timeout = 90 * time.Second
 
-	uri := lo.CoalesceOrEmpty(os.Getenv("OPTIMIZER_URI"), OPTIMIZER_URI)
+	uri := cmp.Or(os.Getenv("OPTIMIZER_URI"), OPTIMIZER_URI)
 	apiClient, err := optimizer.NewClientWithResponses(uri, optimizer.WithHTTPClient(httpClient))
 	if err != nil {
 		return err
