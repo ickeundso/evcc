@@ -1,0 +1,155 @@
+{
+  "db_summary": {
+    "runs": 43230,
+    "first_run": "2026-04-10 07:04:36.242866557+02:00",
+    "last_run": "2026-06-20 12:56:19.204949512+02:00",
+    "responses_by_source": {
+      "milp": 43191,
+      "ml": 43230
+    },
+    "responses_by_source_status": {
+      "milp:Optimal": 42732,
+      "milp:error": 459,
+      "ml:Optimal": 40407,
+      "ml:error": 2823
+    },
+    "outcomes": 0
+  },
+  "s1": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/01_dataset_health.png",
+    "total_runs": 43230,
+    "days_covered": 72,
+    "runs_per_day_median": 614.5,
+    "milp_total_err_rate": 0.010627214002917275,
+    "ml_total_err_rate": 0.06530187369882026
+  },
+  "s2": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/02_objective_agreement.png",
+    "paired_optimal": 40231,
+    "agree_within_1e4": 40183,
+    "agree_within_1e2": 40190,
+    "diverge_ge_0_1": 28,
+    "mean_signed_delta": 0.0003055936676870212,
+    "mean_abs_delta": 0.0003697912439928768
+  },
+  "s3": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/03_plan_agreement.png",
+    "sample_size": 2000,
+    "grid_import_delta_median_wh": 0.0,
+    "grid_import_delta_p95_wh": 0.0,
+    "bat_cycle_delta_median_wh": 0.0,
+    "bat_cycle_delta_p95_wh": 0.0,
+    "frac_identical_grid_import": 0.999
+  },
+  "s4": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/04_whole_house_flows.png",
+    "sample_runs": 1500,
+    "milp_means": {
+      "run_id": 21954.372745490982,
+      "pv_forecast_wh": 22373.027068941785,
+      "home_forecast_wh": 12451.919249244804,
+      "grid_import_wh": 1572.5243912364613,
+      "grid_export_wh": 10467.785252895033,
+      "battery_charge_wh": 5870.716492562821,
+      "battery_discharge_wh": 4844.869547470977,
+      "planned_self_consumed_pv_wh": 11905.241816046753
+    },
+    "ml_means": {
+      "run_id": 23206.67705382436,
+      "pv_forecast_wh": 22907.344266777236,
+      "home_forecast_wh": 12432.725440690843,
+      "grid_import_wh": 1540.6784203980044,
+      "grid_export_wh": 10886.33700649353,
+      "battery_charge_wh": 5884.317636665785,
+      "battery_discharge_wh": 4755.357408590967,
+      "planned_self_consumed_pv_wh": 12021.007260283703
+    }
+  },
+  "s5": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/05_latency_reliability.png",
+    "latency_pct": {
+      "milp": {
+        "p50": 333.0,
+        "p95": 9628.899999999994,
+        "p99": 19787.830000000016
+      },
+      "ml": {
+        "p50": 146.0,
+        "p95": 1190.0,
+        "p99": 3029.820000000007
+      }
+    },
+    "error_counts": {
+      "milp": {
+        "auth": 0,
+        "bad_request": 256,
+        "empty_body": 0,
+        "http_other": 0,
+        "network": 1,
+        "other": 3,
+        "timeout": 199,
+        "tls": 0
+      },
+      "ml": {
+        "auth": 97,
+        "bad_request": 256,
+        "empty_body": 318,
+        "http_other": 8,
+        "network": 112,
+        "other": 0,
+        "timeout": 0,
+        "tls": 2032
+      }
+    }
+  },
+  "s6": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/06_divergence_timeline.png",
+    "csv": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/06_divergent_runs.csv",
+    "n_divergent": 28,
+    "top_3": [
+      {
+        "run_id": 24392,
+        "ts": "2026-05-20 12:51:43.825876820+00:00",
+        "horizon": 133,
+        "milp_obj": -3.9254469871520996,
+        "ml_obj": -2.716339111328125,
+        "obj_delta": 1.2091078758239746,
+        "milp_grid_imp": 29575.54564,
+        "ml_grid_imp": 29887.629928,
+        "milp_grid_exp": 436.214085,
+        "ml_grid_exp": 580.93868
+      },
+      {
+        "run_id": 24390,
+        "ts": "2026-05-20 12:46:40.786271803+00:00",
+        "horizon": 133,
+        "milp_obj": -3.7210986614227295,
+        "ml_obj": -2.5940701961517334,
+        "obj_delta": 1.127028465270996,
+        "milp_grid_imp": 29250.5525,
+        "ml_grid_imp": 29488.28041,
+        "milp_grid_exp": 510.570535,
+        "ml_grid_exp": 580.93866
+      },
+      {
+        "run_id": 24391,
+        "ts": "2026-05-20 12:49:13.166364466+00:00",
+        "horizon": 133,
+        "milp_obj": -3.755459785461426,
+        "ml_obj": -2.685249090194702,
+        "obj_delta": 1.0702106952667236,
+        "milp_grid_imp": 29326.88385,
+        "ml_grid_imp": 29621.763978,
+        "milp_grid_exp": 453.41839,
+        "ml_grid_exp": 580.93866
+      }
+    ]
+  },
+  "s7": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/07_time_of_day.png"
+  },
+  "s8": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/08_input_sanity.png",
+    "sample_size": 20
+  }
+}

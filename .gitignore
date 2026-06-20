@@ -49,3 +49,13 @@ asset-stats.html
 /evcc.db
 /tsconfig.tsbuildinfo
 *storybook.log
+
+# A/B optimizer analysis artifacts (fork-local, not for upstream)
+# allowlist analysis sources + outputs, keep raw exports ignored
+!analysis/ab/*.py
+!analysis/ab/*.ipynb
+!analysis/ab/*.md
+!analysis/ab/*.json
+!analysis/ab/*.csv
+!analysis/ab/charts/*.png
+analysis/ab/__pycache__/
