@@ -823,6 +823,12 @@ func (site *Site) updateMeters() error {
 	// from the MILP optimizer above.
 	if os.Getenv("ML_OPTIMIZER_URI") != "" {
 		go site.abOptimizerUpdateAsync()
+
+		// A/B outcome aggregator: separate slow-cadence goroutine that
+		// reconstructs actual whole-house flows for elapsed run windows
+		// from the existing meter collectors. Same gate (no outcomes are
+		// useful unless the shadow runner is active), own rate limiter.
+		go site.abOutcomeUpdateAsync()
 	}
 
 	return nil

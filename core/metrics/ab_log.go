@@ -61,15 +61,37 @@ func (AbResponse) TableName() string { return "ab_optimizer_responses" }
 // AbOutcome is the actual system behaviour observed in the time window of an
 // A/B run, filled in later by the outcome aggregator once enough meter data has
 // accumulated. Keyed by RunID (1:1 with AbRun).
+//
+// Whole-house scope: evcc balances PV, home battery, household consumption,
+// vehicle charging, and grid simultaneously. The aggregator captures every
+// flow so analysis can score self-consumption and per-pathway routing - not
+// just cost. New columns are additive and nullable; old rows with only the
+// pre-extension fields remain valid.
 type AbOutcome struct {
-	RunID          uint      `gorm:"column:run_id;primarykey"`
-	WindowStart    time.Time `gorm:"column:window_start"`
-	WindowEnd      time.Time `gorm:"column:window_end"`
-	ActualCost     *float64  `gorm:"column:actual_cost"`
-	ActualGridWh   *float64  `gorm:"column:actual_grid_wh"`
-	ActualPvWh     *float64  `gorm:"column:actual_pv_wh"`
-	ActualFeedinWh *float64  `gorm:"column:actual_feedin_wh"`
-	Notes          string    `gorm:"column:notes"`
+	RunID       uint      `gorm:"column:run_id;primarykey"`
+	WindowStart time.Time `gorm:"column:window_start"`
+	WindowEnd   time.Time `gorm:"column:window_end"`
+
+	// grid (pre-existing)
+	ActualCost     *float64 `gorm:"column:actual_cost"`      // EUR over the window
+	ActualGridWh   *float64 `gorm:"column:actual_grid_wh"`   // grid import
+	ActualFeedinWh *float64 `gorm:"column:actual_feedin_wh"` // grid export
+
+	// pv (pre-existing)
+	ActualPvWh *float64 `gorm:"column:actual_pv_wh"` // PV production
+
+	// home battery aggregate (sum across all home batteries)
+	ActualBatteryChargeWh    *float64 `gorm:"column:actual_battery_charge_wh"`
+	ActualBatteryDischargeWh *float64 `gorm:"column:actual_battery_discharge_wh"`
+
+	// household + vehicle
+	ActualHomeWh      *float64 `gorm:"column:actual_home_wh"`      // residual house load
+	ActualLoadpointWh *float64 `gorm:"column:actual_loadpoint_wh"` // EV charging total
+
+	// derived: pv_wh - feedin_wh, floored at 0
+	ActualSelfConsumedWh *float64 `gorm:"column:actual_self_consumed_wh"`
+
+	Notes string `gorm:"column:notes"`
 }
 
 // TableName implements gorm.Tabler.
