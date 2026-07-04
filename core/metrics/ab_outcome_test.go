@@ -30,7 +30,7 @@ func insertSlot(t *testing.T, group, name string, slot time.Time, energyKwh, ret
 	t.Helper()
 	e, err := createEntity(group, name, name)
 	require.NoError(t, err)
-	require.NoError(t, persist(e, slot, energyKwh, returnKwh))
+	require.NoError(t, persist(e, slot, energyKwh, returnKwh, nil))
 }
 
 // flatPrices returns a slice of length n where every entry is v. Convenience

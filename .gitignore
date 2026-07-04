@@ -18,6 +18,7 @@ testdata/**/*
 !assets/js/**/*.yaml
 !package*.json
 !evcc.dist.yaml
+!.coderabbit.yaml
 !tests/**/*.evcc.yaml
 !tests/**/*.tpl.yaml
 !tsconfig.json
@@ -49,6 +50,8 @@ asset-stats.html
 /evcc.db
 /tsconfig.tsbuildinfo
 *storybook.log
+/graphify-out/
+.graphifyignore
 
 # A/B optimizer analysis artifacts (fork-local, not for upstream)
 # allowlist analysis sources + outputs, keep raw exports ignored
