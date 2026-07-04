@@ -349,6 +349,30 @@ func TestAggregateOutcome_BatteryChargeOnly(t *testing.T) {
 	assert.InDelta(t, 0, *out.ActualBatteryDischargeWh, 1e-9)
 }
 
+// TestSlotsForGroup_FiltersOutRangeStart guards the site_ab_outcome.go
+// contract: SlotsForGroup uses m.ts >= from, so callers MUST pass a truncated
+// windowStart if they want to include the slot rooted at that boundary.
+// Passing a mid-slot moment excludes the slot rooted at the previous
+// boundary — this is the shape of the off-by-one that caused every early
+// outcome to be N-1/N slots short.
+func TestSlotsForGroup_FiltersOutRangeStart(t *testing.T) {
+	setupAbLogDB(t)
+	slot := time.Date(2026, 7, 3, 14, 0, 0, 0, time.UTC).Truncate(tariff.SlotDuration)
+	insertSlot(t, Grid, "g", slot, 1.0, 0)
+
+	// mid-slot windowStart → excludes the slot at 14:00
+	midSlotStart := slot.Add(7 * time.Minute)
+	got, err := SlotsForGroup(Grid, midSlotStart, slot.Add(2*tariff.SlotDuration))
+	require.NoError(t, err)
+	assert.Empty(t, got, "mid-slot from filters out the slot rooted at the earlier boundary")
+
+	// truncated windowStart → includes it
+	got, err = SlotsForGroup(Grid, slot, slot.Add(2*tariff.SlotDuration))
+	require.NoError(t, err)
+	require.Len(t, got, 1)
+	assert.InDelta(t, 1.0, got[0].Energy, 1e-9)
+}
+
 func TestAggregateOutcome_WindowEndComputed(t *testing.T) {
 	ws := time.Date(2026, 6, 20, 12, 0, 0, 0, time.UTC).Truncate(tariff.SlotDuration)
 	run := AbRun{ID: 1, Timestamp: ws.Add(7 * time.Second) /* off-slot start */, Horizon: 4, SlotDurationS: 900}

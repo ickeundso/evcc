@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/evcc-io/evcc/core/metrics"
+	"github.com/evcc-io/evcc/tariff"
 )
 
 // A/B outcome aggregator — periodically reconstructs the actual whole-house
@@ -120,7 +121,11 @@ func (site *Site) computeOutcomeForRun(run metrics.AbRun) (metrics.AbOutcome, er
 		}, nil
 	}
 
-	windowStart := run.Timestamp
+	// Truncate to the collector's slot boundary so the SQL range filter
+	// (m.ts >= from) includes the slot that AggregateOutcome will look up
+	// at i=0. run.Timestamp is the aggregator's start moment, typically
+	// mid-slot; slot rows are keyed at 15-min boundaries.
+	windowStart := run.Timestamp.Truncate(tariff.SlotDuration)
 	windowEnd := windowStart.Add(time.Duration(run.Horizon*run.SlotDurationS) * time.Second)
 
 	flows := metrics.HouseFlows{}
