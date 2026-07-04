@@ -1,0 +1,53 @@
+{
+  "input_db": "/Users/maex/data/dev/evcc-io/evcc/evcc-ab-export.db",
+  "runs_total": 50741,
+  "outcomes_total": 50244,
+  "paired_with_outcomes": 43894,
+  "o1": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o1_outcome_health.png",
+    "total_outcomes": 50244,
+    "coverage_pct": {
+      "grid": 88.8,
+      "pv": 16.4,
+      "battery": 16.4,
+      "home": 100.0,
+      "loadpoint": 63.4
+    },
+    "outliers_dropped": 13262,
+    "reasonable_rows": 31376,
+    "full_house_rows": 8218
+  },
+  "o2": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o2_forecast_quality.png",
+    "samples": 6513,
+    "pv_median_error_kwh": -0.233,
+    "pv_median_abs_error_kwh": 8.959,
+    "pv_p90_abs_error_kwh": 25.376,
+    "home_median_error_wh": 1828.9,
+    "home_median_abs_error_wh": 2013.0
+  },
+  "o3": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o3_plan_cost_vs_actual.png",
+    "sample_size": 1500,
+    "milp_derived_mae_eur": 26.142,
+    "ml_derived_mae_eur": 26.142,
+    "milp_derived_bias_eur": -25.044,
+    "objective_minus_derived_bias_eur": 52.078
+  },
+  "o4": {
+    "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o4_whole_house_reality.png",
+    "sample_size": 5569,
+    "means_wh": {
+      "grid_import": 150.0,
+      "grid_export": 14320.5,
+      "pv_production": 36280.0,
+      "self_consumed_pv": 25511.5,
+      "battery_charge": 7337.5,
+      "battery_discharge": 5810.0,
+      "home_consumption": 11329.3,
+      "loadpoint_charging": 10689.0
+    },
+    "autarky_pct": 99.3,
+    "self_consumption_pct": 70.3
+  }
+}

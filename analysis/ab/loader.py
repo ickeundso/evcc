@@ -123,6 +123,69 @@ def load_paired(db_path: Path | str = DEFAULT_DB) -> pd.DataFrame:
     return df
 
 
+def load_outcomes(db_path: Path | str = DEFAULT_DB) -> pd.DataFrame:
+    """Return ab_actual_outcomes as a DataFrame.
+
+    Only rows written by the aggregator — historical runs whose window has not
+    yet closed do not have an outcome row. Numeric columns are nullable
+    (pd.NA when the aggregator couldn't reconstruct the flow for that group).
+    """
+    with _connect(db_path) as conn:
+        df = pd.read_sql_query(
+            """SELECT run_id, window_start, window_end,
+                      actual_cost, actual_grid_wh, actual_feedin_wh,
+                      actual_pv_wh,
+                      actual_battery_charge_wh, actual_battery_discharge_wh,
+                      actual_home_wh, actual_loadpoint_wh,
+                      actual_self_consumed_wh, notes
+               FROM ab_actual_outcomes ORDER BY run_id""",
+            conn,
+        )
+    df["window_start"] = pd.to_datetime(df["window_start"], utc=True, format="ISO8601")
+    df["window_end"] = pd.to_datetime(df["window_end"], utc=True, format="ISO8601")
+    return df
+
+
+def load_paired_with_outcomes(db_path: Path | str = DEFAULT_DB) -> pd.DataFrame:
+    """Paired MILP+ML responses joined with the actual-outcome row.
+
+    Filters to runs where both backends returned Optimal AND an outcome row
+    exists. Adds predicted-vs-actual columns per backend for cost.
+    """
+    with _connect(db_path) as conn:
+        df = pd.read_sql_query(
+            """
+            SELECT r.id AS run_id, r.ts, r.horizon, r.slot_dur_s,
+                   m.objective_value AS milp_predicted_cost,
+                   m.duration_ms AS milp_duration_ms,
+                   l.objective_value AS ml_predicted_cost,
+                   l.duration_ms AS ml_duration_ms,
+                   o.window_start, o.window_end,
+                   o.actual_cost, o.actual_grid_wh, o.actual_feedin_wh,
+                   o.actual_pv_wh,
+                   o.actual_battery_charge_wh, o.actual_battery_discharge_wh,
+                   o.actual_home_wh, o.actual_loadpoint_wh,
+                   o.actual_self_consumed_wh, o.notes
+            FROM ab_optimizer_runs r
+            JOIN ab_optimizer_responses m
+              ON m.run_id = r.id AND m.source = 'milp' AND m.status = 'Optimal'
+            JOIN ab_optimizer_responses l
+              ON l.run_id = r.id AND l.source = 'ml' AND l.status = 'Optimal'
+            JOIN ab_actual_outcomes o ON o.run_id = r.id
+            WHERE o.actual_cost IS NOT NULL
+            ORDER BY r.id
+            """,
+            conn,
+        )
+    for c in ("ts", "window_start", "window_end"):
+        df[c] = pd.to_datetime(df[c], utc=True, format="ISO8601")
+    df["milp_err_cost"] = df["milp_predicted_cost"] - df["actual_cost"]
+    df["ml_err_cost"] = df["ml_predicted_cost"] - df["actual_cost"]
+    df["milp_abs_err_cost"] = df["milp_err_cost"].abs()
+    df["ml_abs_err_cost"] = df["ml_err_cost"].abs()
+    return df
+
+
 def load_responses_for_run(
     run_id: int, db_path: Path | str = DEFAULT_DB
 ) -> dict[str, dict]:
