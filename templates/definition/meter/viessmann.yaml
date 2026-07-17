@@ -60,23 +60,26 @@ render: |
   type: custom
   power:
     # heating.power.consumption.current: real electrical input power in kW -> W.
+    # Uses the same device feature-list URL + cache as the Viessmann charger, so when
+    # both are configured this shares one cached request instead of doubling API calls
+    # (the Viessmann API has a strict daily quota shared with the ViCare app).
     source: http
-    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.power.consumption.current
-    cache: 30s
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
+    cache: 120s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
       redirecturi: {{ .redirecturi }}
       gateway_serial: {{ .gateway_serial }}
-    jq: '.data.properties.value.value * 1000' # kW -> W
+    jq: '.data[] | select(.feature == "heating.power.consumption.current") | .properties.value.value * 1000' # kW -> W
   soc:
     # heating.dhw.sensors.temperature.dhwCylinder: domestic hot water temperature (°C).
     source: http
-    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.dhw.sensors.temperature.dhwCylinder
-    cache: 30s
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
+    cache: 120s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
       redirecturi: {{ .redirecturi }}
       gateway_serial: {{ .gateway_serial }}
-    jq: '.data.properties.value.value'
+    jq: '.data[] | select(.feature == "heating.dhw.sensors.temperature.dhwCylinder") | .properties.value.value'
