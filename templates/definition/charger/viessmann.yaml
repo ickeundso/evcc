@@ -200,4 +200,41 @@ render: |
         set:
           source: error
           error: ErrNotAvailable
+  power:
+    # heating.power.consumption.current reports the real electrical input power in kW.
+    # Reading it replaces evcc's fallback estimate (current * phases * voltage), which
+    # wrongly assumed a full electric-heater draw when no meter was configured.
+    source: http
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.power.consumption.current
+    cache: 30s
+    auth:
+      source: viessmann
+      clientid: {{ .clientid }}
+      redirecturi: {{ .redirecturi }}
+      gateway_serial: {{ .gateway_serial }}
+    jq: '.data.properties.value.value * 1000' # kW -> W
+  temp:
+    # heating.dhw.sensors.temperature.dhwCylinder: domestic hot water temperature (°C).
+    # The device controls one-time DHW charging, so the hot water tank is the natural
+    # temperature to display on the loadpoint gauge.
+    source: http
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.dhw.sensors.temperature.dhwCylinder
+    cache: 30s
+    auth:
+      source: viessmann
+      clientid: {{ .clientid }}
+      redirecturi: {{ .redirecturi }}
+      gateway_serial: {{ .gateway_serial }}
+    jq: '.data.properties.value.value'
+  limittemp:
+    # heating.dhw.temperature.main: configured DHW target temperature (°C).
+    source: http
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.dhw.temperature.main
+    cache: 60s
+    auth:
+      source: viessmann
+      clientid: {{ .clientid }}
+      redirecturi: {{ .redirecturi }}
+      gateway_serial: {{ .gateway_serial }}
+    jq: '.data.properties.value.value'
   {{ include "heatpumpswitch" . }}
