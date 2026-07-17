@@ -197,6 +197,11 @@ type SocLimiter interface {
 	GetLimitSoc() (int64, error)
 }
 
+// SocController sets the soc/temperature limit on the device (e.g. a heat pump DHW target)
+type SocController interface {
+	SetLimitSoc(limit int64) error
+}
+
 // Dimmer provides EnWG §14a dimming
 type Dimmer interface {
 	Dimmed() (bool, error)

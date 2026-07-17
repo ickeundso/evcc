@@ -90,12 +90,13 @@ func NewHeatpumpFromConfig(ctx context.Context, other map[string]any) (api.Charg
 	implement.May(res, implement.MeterEnergy(energyG))
 	implement.May(res, implement.MeterReturnEnergy(returnG))
 
-	tempG, limitTempG, err := cc.Temperature.Configure(ctx)
+	tempG, limitTempG, limitTempS, err := cc.Temperature.Configure(ctx)
 	if err != nil {
 		return nil, err
 	}
 	implement.May(res, implement.Battery(tempG))
 	implement.May(res, implement.SocLimiter(limitTempG))
+	implement.May(res, implement.SocController(limitTempS))
 
 	if err := cc.Dimmer.Implement(ctx, res); err != nil {
 		return nil, err

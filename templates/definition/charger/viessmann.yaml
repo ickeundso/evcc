@@ -237,4 +237,19 @@ render: |
       redirecturi: {{ .redirecturi }}
       gateway_serial: {{ .gateway_serial }}
     jq: '.data.properties.value.value'
+  settemp:
+    # heating.dhw.temperature.main / setTargetTemperature: writes the DHW target (°C).
+    # evcc pushes the loadpoint temperature limit to the heat pump via this command.
+    # Configure the loadpoint's min/max temperature so only supported values are offered.
+    source: http
+    uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features/heating.dhw.temperature.main/commands/setTargetTemperature
+    method: POST
+    headers:
+      - content-type: application/json
+    auth:
+      source: viessmann
+      clientid: {{ .clientid }}
+      redirecturi: {{ .redirecturi }}
+      gateway_serial: {{ .gateway_serial }}
+    body: '{"temperature": {{ "{{ .limittemp }}" }}}'
   {{ include "heatpumpswitch" . }}

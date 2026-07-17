@@ -133,7 +133,7 @@ func NewConfigurableFromConfig(ctx context.Context, other map[string]any) (api.C
 	}
 
 	// heating fallbacks
-	temp, limitTemp, err := cc.Temperature.Configure(ctx)
+	temp, limitTemp, setLimitTemp, err := cc.Temperature.Configure(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -145,6 +145,7 @@ func NewConfigurableFromConfig(ctx context.Context, other map[string]any) (api.C
 	}
 	implement.May(c, implement.Battery(soc))
 	implement.May(c, implement.SocLimiter(limitsoc))
+	implement.May(c, implement.SocController(setLimitTemp))
 
 	powerG, energyG, returnG, err := cc.Energy.Configure(ctx)
 	if err != nil {

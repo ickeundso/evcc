@@ -378,6 +378,21 @@ func (i *iResurrector) WakeUp() error {
 	return i.resurrector0()
 }
 
+func SocController(socController0 func(int64) error) api.SocController {
+	if socController0 == nil {
+		return nil
+	}
+	return &iSocController{socController0}
+}
+
+type iSocController struct {
+	socController0 func(int64) error
+}
+
+func (i *iSocController) SetLimitSoc(p0 int64) error {
+	return i.socController0(p0)
+}
+
 func SocLimiter(socLimiter0 func() (int64, error)) api.SocLimiter {
 	if socLimiter0 == nil {
 		return nil

@@ -304,15 +304,30 @@ func (lp *Loadpoint) setLimitSoc(soc int) {
 // SetLimitSoc sets the session soc limit
 func (lp *Loadpoint) SetLimitSoc(soc int) {
 	lp.Lock()
-	defer lp.Unlock()
-
 	lp.log.DEBUG.Println("set session soc limit:", soc)
 
-	// apply immediately
-	if lp.limitSoc != soc {
+	changed := lp.limitSoc != soc
+	if changed {
 		lp.setLimitSoc(soc)
-		lp.requestUpdate()
 	}
+	lp.Unlock()
+
+	if !changed {
+		return
+	}
+
+	// push the target to devices that support setting it (e.g. a heat pump DHW
+	// target temperature). Done outside the lock as it may perform device I/O.
+	// soc == 0 clears the evcc limit and must not be written to the device.
+	if soc > 0 {
+		if sc, ok := api.Cap[api.SocController](lp.charger); ok {
+			if err := sc.SetLimitSoc(int64(soc)); err != nil {
+				lp.log.ERROR.Printf("set device limit soc: %v", err)
+			}
+		}
+	}
+
+	lp.requestUpdate()
 }
 
 // GetLimitEnergy returns the session limit energy
