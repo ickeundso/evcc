@@ -237,7 +237,7 @@ render: |
       redirecturi: {{ .redirecturi }}
       gateway_serial: {{ .gateway_serial }}
     jq: '.data.properties.value.value'
-  settemp:
+  setlimittemp:
     # heating.dhw.temperature.main / setTargetTemperature: writes the DHW target (°C).
     # evcc pushes the loadpoint temperature limit to the heat pump via this command.
     # Configure the loadpoint's min/max temperature so only supported values are offered.
