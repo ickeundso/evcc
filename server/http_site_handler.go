@@ -187,6 +187,12 @@ func updateSmartCostLimit(site site.API, setLimit func(loadpoint.API, *float64))
 			setLimit(lp, val)
 		}
 
+		// persist immediately so the smart cost / feed-in limit survives a restart
+		// instead of only living in memory until the periodic flush
+		if err := settings.Persist(); err != nil {
+			log.ERROR.Printf("persist settings: %v", err)
+		}
+
 		jsonWrite(w, val)
 	}
 }
