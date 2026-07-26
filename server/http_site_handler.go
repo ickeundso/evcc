@@ -105,6 +105,13 @@ func handler[T any](conv func(string) (T, error), set func(T) error, get func() 
 			return
 		}
 
+		// persist immediately so per-parameter changes (e.g. a loadpoint's smart
+		// cost limit) survive a restart without relying on the periodic flush,
+		// matching the behaviour of the explicit site config handlers
+		if err := settings.Persist(); err != nil {
+			log.ERROR.Printf("persist settings: %v", err)
+		}
+
 		jsonWrite(w, get())
 	}
 }
