@@ -34,6 +34,7 @@ echo ""
 docker build \
     --platform "${PLATFORM}" \
     --build-arg RELEASE=1 \
+    --build-arg VERSION="${VERSION}" \
     -t "${GHCR_FULL}:${VERSION}" \
     -t "${GHCR_FULL}:latest" \
     -f Dockerfile \

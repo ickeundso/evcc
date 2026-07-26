@@ -63,8 +63,12 @@ ARG TARGETARCH
 ARG TARGETVARIANT
 ARG GOARM=${TARGETVARIANT#v}
 
+# optional explicit version stamped into the binary (util.Version), e.g. a
+# feature-build tag. Empty by default -> Makefile falls back to the git SHA.
+ARG VERSION=
+
 RUN --mount=type=cache,target=${GOCACHE} --mount=type=cache,target=${GOMODCACHE} \
-    RELEASE=${RELEASE} GOOS=${TARGETOS} GOARCH=${TARGETARCH} GOARM=${GOARM} make build
+    TAG_NAME=${VERSION} RELEASE=${RELEASE} GOOS=${TARGETOS} GOARCH=${TARGETARCH} GOARM=${GOARM} make build
 
 
 # STEP 3 build a small image including module support
