@@ -105,13 +105,6 @@ func handler[T any](conv func(string) (T, error), set func(T) error, get func() 
 			return
 		}
 
-		// persist immediately so per-parameter changes (e.g. a loadpoint's smart
-		// cost limit) survive a restart without relying on the periodic flush,
-		// matching the behaviour of the explicit site config handlers
-		if err := settings.Persist(); err != nil {
-			log.ERROR.Printf("persist settings: %v", err)
-		}
-
 		jsonWrite(w, get())
 	}
 }
@@ -185,12 +178,6 @@ func updateSmartCostLimit(site site.API, setLimit func(loadpoint.API, *float64))
 
 		for _, lp := range site.Loadpoints() {
 			setLimit(lp, val)
-		}
-
-		// persist immediately so the smart cost / feed-in limit survives a restart
-		// instead of only living in memory until the periodic flush
-		if err := settings.Persist(); err != nil {
-			log.ERROR.Printf("persist settings: %v", err)
 		}
 
 		jsonWrite(w, val)
