@@ -1,0 +1,32 @@
+{
+  "db": "evcc-ab-export.db",
+  "windows_used": 2780,
+  "train_rows": 1945,
+  "test_rows": 835,
+  "train_span": [
+    "2026-06-18 11:30:00+00:00",
+    "2026-07-17 18:15:00+00:00"
+  ],
+  "test_span": [
+    "2026-07-17 18:30:00+00:00",
+    "2026-07-26 11:00:00+00:00"
+  ],
+  "baseline_forecast_mae_kwh": 7.701,
+  "bias_corrected_mae_kwh": 7.67,
+  "model_mae_kwh": 10.073,
+  "model_vs_forecast_improvement_pct": -30.8,
+  "model_r2": 0.338,
+  "forecast_r2": 0.623,
+  "train_median_bias_kwh": 0.091,
+  "permutation_importance_kwh": {
+    "pv_forecast_wh": 2.521,
+    "price_import_mean": 0.432,
+    "n_slots_fc": 0.089,
+    "home_forecast_wh": 0.066,
+    "doy_sin": 0.0,
+    "doy_cos": 0.0,
+    "price_export_mean": -0.0,
+    "hour_sin": -0.063,
+    "hour_cos": -0.093
+  }
+}

@@ -19,6 +19,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 DEFAULT_DB = Path(__file__).resolve().parents[2] / "evcc-ab-export.db"
@@ -183,6 +184,68 @@ def load_paired_with_outcomes(db_path: Path | str = DEFAULT_DB) -> pd.DataFrame:
     df["ml_err_cost"] = df["ml_predicted_cost"] - df["actual_cost"]
     df["milp_abs_err_cost"] = df["milp_err_cost"].abs()
     df["ml_abs_err_cost"] = df["ml_err_cost"].abs()
+    return df
+
+
+def load_run_features(
+    db_path: Path | str = DEFAULT_DB, local_tz: str = "Europe/Berlin"
+) -> pd.DataFrame:
+    """Per-run feature table for ML: forecast aggregates + calendar features + actual targets.
+
+    One row per run (ab_optimizer_runs joined with ab_actual_outcomes). Forecast
+    values are summed from the request time_series over the horizon window:
+    ft = PV forecast (Wh/slot), gt = home-load forecast (Wh/slot), p_N = grid
+    import price, p_E = feed-in price. Calendar features are derived from
+    window_start in `local_tz` (PV is driven by local solar time). The actual_*
+    columns are the measured targets (nullable where the outcome aggregator
+    lacked data for that group).
+    """
+    runs = load_runs(db_path)  # parses the request JSON
+    outcomes = load_outcomes(db_path)
+    merged = runs.merge(outcomes, on="run_id", how="inner")
+
+    rows = []
+    for r in merged.itertuples():
+        req = r.request
+        if not req:
+            continue
+        ts = req.get("time_series", {}) or {}
+        ft = ts.get("ft") or []  # PV forecast, Wh/slot
+        gt = ts.get("gt") or []  # home-load forecast, Wh/slot
+        p_n = ts.get("p_N") or []
+        p_e = ts.get("p_E") or []
+        rows.append(
+            {
+                "run_id": r.run_id,
+                "ts": r.ts,
+                "window_start": r.window_start,
+                "horizon": r.horizon,
+                "slot_dur_s": r.slot_dur_s,
+                "n_slots_fc": len(ft),
+                "pv_forecast_wh": float(sum(ft)),
+                "home_forecast_wh": float(sum(gt)),
+                "price_import_mean": float(np.mean(p_n)) if p_n else np.nan,
+                "price_export_mean": float(np.mean(p_e)) if p_e else np.nan,
+                "actual_pv_wh": r.actual_pv_wh,
+                "actual_home_wh": r.actual_home_wh,
+                "actual_grid_wh": r.actual_grid_wh,
+                "actual_feedin_wh": r.actual_feedin_wh,
+                "actual_loadpoint_wh": r.actual_loadpoint_wh,
+            }
+        )
+    df = pd.DataFrame(rows)
+    if df.empty:
+        return df
+
+    ws_local = df["window_start"].dt.tz_convert(local_tz)
+    df["hour"] = ws_local.dt.hour
+    df["dow"] = ws_local.dt.dayofweek
+    df["doy"] = ws_local.dt.dayofyear
+    df["month"] = ws_local.dt.month
+    df["hour_sin"] = np.sin(2 * np.pi * df["hour"] / 24)
+    df["hour_cos"] = np.cos(2 * np.pi * df["hour"] / 24)
+    df["doy_sin"] = np.sin(2 * np.pi * df["doy"] / 365.25)
+    df["doy_cos"] = np.cos(2 * np.pi * df["doy"] / 365.25)
     return df
 
 

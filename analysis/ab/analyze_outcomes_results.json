@@ -1,53 +1,53 @@
 {
-  "input_db": "/Users/maex/data/dev/evcc-io/evcc/evcc-ab-export.db",
-  "runs_total": 50741,
-  "outcomes_total": 50244,
-  "paired_with_outcomes": 43894,
+  "input_db": "evcc-ab-export.db",
+  "runs_total": 65127,
+  "outcomes_total": 64635,
+  "paired_with_outcomes": 56428,
   "o1": {
     "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o1_outcome_health.png",
-    "total_outcomes": 50244,
+    "total_outcomes": 64635,
     "coverage_pct": {
-      "grid": 88.8,
-      "pv": 16.4,
-      "battery": 16.4,
+      "grid": 91.3,
+      "pv": 35.0,
+      "battery": 35.0,
       "home": 100.0,
-      "loadpoint": 63.4
+      "loadpoint": 71.5
     },
-    "outliers_dropped": 13262,
-    "reasonable_rows": 31376,
-    "full_house_rows": 8218
+    "outliers_dropped": 21385,
+    "reasonable_rows": 37644,
+    "full_house_rows": 22609
   },
   "o2": {
     "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o2_forecast_quality.png",
-    "samples": 6513,
-    "pv_median_error_kwh": -0.233,
-    "pv_median_abs_error_kwh": 8.959,
-    "pv_p90_abs_error_kwh": 25.376,
-    "home_median_error_wh": 1828.9,
-    "home_median_abs_error_wh": 2013.0
+    "samples": 17537,
+    "pv_median_error_kwh": -1.54,
+    "pv_median_abs_error_kwh": 7.763,
+    "pv_p90_abs_error_kwh": 22.263,
+    "home_median_error_wh": 927.8,
+    "home_median_abs_error_wh": 1843.7
   },
   "o3": {
     "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o3_plan_cost_vs_actual.png",
     "sample_size": 1500,
-    "milp_derived_mae_eur": 26.142,
-    "ml_derived_mae_eur": 26.142,
-    "milp_derived_bias_eur": -25.044,
-    "objective_minus_derived_bias_eur": 52.078
+    "milp_derived_mae_eur": 18.127,
+    "ml_derived_mae_eur": 18.124,
+    "milp_derived_bias_eur": -17.44,
+    "objective_minus_derived_bias_eur": 36.307
   },
   "o4": {
     "chart": "/Users/maex/data/dev/evcc-io/evcc/analysis/ab/charts/o4_whole_house_reality.png",
-    "sample_size": 5569,
+    "sample_size": 11837,
     "means_wh": {
-      "grid_import": 150.0,
-      "grid_export": 14320.5,
-      "pv_production": 36280.0,
-      "self_consumed_pv": 25511.5,
-      "battery_charge": 7337.5,
-      "battery_discharge": 5810.0,
-      "home_consumption": 11329.3,
+      "grid_import": 340.0,
+      "grid_export": 13784.5,
+      "pv_production": 35570.0,
+      "self_consumed_pv": 22750.0,
+      "battery_charge": 8188.5,
+      "battery_discharge": 8330.0,
+      "home_consumption": 11385.9,
       "loadpoint_charging": 10689.0
     },
-    "autarky_pct": 99.3,
-    "self_consumption_pct": 70.3
+    "autarky_pct": 98.5,
+    "self_consumption_pct": 64.0
   }
 }
