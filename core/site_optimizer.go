@@ -431,6 +431,9 @@ func (site *Site) optimizerUpdate(battery []types.Measurement) error {
 		Details: *details,
 	})
 
+	// recover the first slot duration from the request (set in buildOptimizerRequest)
+	firstSlotDuration := time.Duration(req.TimeSeries.Dt[0]) * time.Second
+
 	slotHours := firstSlotDuration.Hours()
 	gridImporting := len(resp.JSON200.GridImport) > 0 && resp.JSON200.GridImport[0] > 0
 	gridExporting := len(resp.JSON200.GridExport) > 0 && resp.JSON200.GridExport[0] > 0

@@ -78,7 +78,7 @@ func NewSwitchSocketFromConfig(ctx context.Context, other map[string]any) (api.C
 	}
 
 	// for heating devices, the soc slot holds temperature in °C — fall back to temp getter
-	temp, limitTemp, err := cc.Temperature.Configure(ctx)
+	temp, limitTemp, setLimitTemp, err := cc.Temperature.Configure(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -87,6 +87,7 @@ func NewSwitchSocketFromConfig(ctx context.Context, other map[string]any) (api.C
 	}
 	implement.May(c, implement.Battery(soc))
 	implement.May(c, implement.SocLimiter(limitTemp))
+	implement.May(c, implement.SocController(setLimitTemp))
 
 	return c, nil
 }
