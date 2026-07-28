@@ -1,0 +1,841 @@
+[main  ] INFO 2026/07/28 09:12:37 evcc 
+[main  ] INFO 2026/07/28 09:12:37 using config file: /tmp/repro/evcc.yaml
+[main  ] INFO 2026/07/28 09:12:37 using sqlite database: /tmp/repro/evcc.db?_pragma=busy_timeout(5000)&_pragma=foreign_keys(1)&_pragma=auto_vacuum(INCREMENTAL)
+[eebus ] INFO 2026/07/28 09:12:37 Local SKI: 5388cb649f24c26302601a8f00b85762d77c0527
+[main  ] INFO 2026/07/28 09:12:37 OCPP local url:    ws://127.0.0.1:8887/<stationId>
+[main  ] INFO 2026/07/28 09:12:37 UI local url:      http://127.0.0.1:7099
+[main  ] WARN 2026/07/28 09:12:37 ❗❗❗ Authentication is disabled. This is dangerous. Your data and credentials are not protected.
+[site  ] INFO 2026/07/28 09:12:37 site config:
+[site  ] INFO 2026/07/28 09:12:37   meters:      grid ✓ pv ✓ battery ✓
+[site  ] INFO 2026/07/28 09:12:37     grid:      power ✓ energy ✗ currents ✗
+[site  ] INFO 2026/07/28 09:12:37     pv 1:      power ✓ energy ✗ currents ✗
+[site  ] INFO 2026/07/28 09:12:37     battery 1: power ✓ energy ✗ currents ✗ soc ✓ capacity ✓
+[site  ] INFO 2026/07/28 09:12:37   vehicles:
+[site  ] INFO 2026/07/28 09:12:37     vehicle 1: range ✗ finish ✗ status ✗ climate ✗ wakeup ✗
+[site  ] INFO 2026/07/28 09:12:37   tariffs:
+[site  ] INFO 2026/07/28 09:12:37     grid:      ✗
+[site  ] INFO 2026/07/28 09:12:37     feed-in:   ✗
+[site  ] INFO 2026/07/28 09:12:37     co2:       ✗
+[site  ] INFO 2026/07/28 09:12:37     solar:     ✗
+[lp-1  ] INFO 2026/07/28 09:12:37 loadpoint 1:
+[lp-1  ] INFO 2026/07/28 09:12:37   mode:        minpv
+[lp-1  ] INFO 2026/07/28 09:12:37   charger:     power ✗ energy ✗ currents ✗ phases ✗ wakeup ✗
+[lp-1  ] INFO 2026/07/28 09:12:37   meters:      charge ✗
+[lp-1  ] WARN 2026/07/28 09:12:37 ignoring deprecated phases: 1. please configure via UI
+[lp-1  ] DEBUG 2026/07/28 09:12:37 phase timer inactive
+[lp-1  ] DEBUG 2026/07/28 09:12:37 pv timer inactive
+[lp-1  ] INFO 2026/07/28 09:12:37 vehicle updated: unknown -> Zoe
+[site  ] DEBUG 2026/07/28 09:12:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:12:37 charge power: 0W
+[site  ] DEBUG 2026/07/28 09:12:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:12:37 battery 1 power: 250W
+[site  ] DEBUG 2026/07/28 09:12:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:12:37 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:12:37 site power: 250W
+[lp-1  ] DEBUG 2026/07/28 09:12:37 charger status: B
+[lp-1  ] INFO 2026/07/28 09:12:37 car connected
+[lp-1  ] DEBUG 2026/07/28 09:12:37 pv timer elapse
+[lp-1  ] DEBUG 2026/07/28 09:12:37 pv timer inactive
+[lp-1  ] DEBUG 2026/07/28 09:12:37 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:12:37 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:12:37 !! plan: plan time zero
+[lp-1  ] DEBUG 2026/07/28 09:12:37 pv charge current: min 6A > 0A (250W @ 3p, battery: false)
+[lp-1  ] DEBUG 2026/07/28 09:12:37 set charge current limit: 6A
+[lp-1  ] DEBUG 2026/07/28 09:12:37 charger enable
+[lp-1  ] DEBUG 2026/07/28 09:12:37 wake-up timer: start
+[main  ] ERROR 2026/07/28 09:12:38 version check failed: malformed version:  (installed: )
+[site  ] DEBUG 2026/07/28 09:12:57 set buffer soc: 45
+[site  ] DEBUG 2026/07/28 09:12:57 set buffer start soc: 60
+[site  ] DEBUG 2026/07/28 09:12:57 set priority soc: 25
+[site  ] DEBUG 2026/07/28 09:12:57 set ev plan soc: 75 @ 2026-07-29 06:30:00 +0200 CEST
+[site  ] DEBUG 2026/07/28 09:13:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:13:07 charge power: 0W
+[site  ] DEBUG 2026/07/28 09:13:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:13:07 battery 1 power: 250W
+[site  ] DEBUG 2026/07/28 09:13:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:13:07 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:13:07 site power: 250W
+[lp-1  ] DEBUG 2026/07/28 09:13:08 charger status: B
+[lp-1  ] DEBUG 2026/07/28 09:13:08 plan: charge 49m52s between 2026-07-29 05:40:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:13:08 pv charge current: min 6A > 0A (250W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:13:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:13:37 charge power: 0W
+[site  ] DEBUG 2026/07/28 09:13:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:13:37 battery 1 power: 250W
+[site  ] DEBUG 2026/07/28 09:13:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:13:37 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:13:37 site power: 250W
+[lp-1  ] DEBUG 2026/07/28 09:13:38 charger status: B
+[lp-1  ] DEBUG 2026/07/28 09:13:38 plan: charge 49m52s between 2026-07-29 05:40:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:13:38 pv charge current: min 6A > 0A (250W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:14:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:14:07 charge power: 0W
+[site  ] DEBUG 2026/07/28 09:14:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:14:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:14:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:14:08 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:14:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:14:08 charger status: C
+[lp-1  ] INFO 2026/07/28 09:14:08 start charging ->
+[lp-1  ] DEBUG 2026/07/28 09:14:08 wake-up timer: stop
+[lp-1  ] DEBUG 2026/07/28 09:14:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:14:08 soc estimated: 60.00% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:14:08 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:14:08 plan: charge 49m52s between 2026-07-29 05:40:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:14:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:14:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:14:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:14:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:14:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:14:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:14:37 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:14:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:14:37 session energy: 0.034kWh
+[lp-1  ] DEBUG 2026/07/28 09:14:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:14:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:14:38 soc estimated: 60.06% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:14:38 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:14:38 plan: charge 49m41s between 2026-07-29 05:40:19 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:14:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:15:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:15:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:15:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:15:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:15:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:15:07 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:15:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:15:07 session energy: 0.069kWh
+[lp-1  ] DEBUG 2026/07/28 09:15:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:15:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:15:08 soc estimated: 60.11% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:15:08 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:15:08 plan: charge 49m30s between 2026-07-29 05:40:30 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:15:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:15:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:15:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:15:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:15:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:15:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:15:38 battery 1 soc: 55%
+[site  ] DEBUG 2026/07/28 09:15:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:15:38 session energy: 0.103kWh
+[lp-1  ] DEBUG 2026/07/28 09:15:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:15:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:15:38 soc estimated: 60.17% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:15:38 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:15:38 plan: charge 49m19s between 2026-07-29 05:40:41 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:15:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:16:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:16:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:16:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:16:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:16:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:16:08 battery 1 soc: 54%
+[site  ] DEBUG 2026/07/28 09:16:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:16:08 session energy: 0.138kWh
+[lp-1  ] DEBUG 2026/07/28 09:16:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:16:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:16:08 soc estimated: 60.23% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:16:08 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:16:08 plan: charge 49m7s between 2026-07-29 05:40:53 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:16:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:16:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:16:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:16:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:16:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:16:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:16:37 battery 1 soc: 54%
+[site  ] DEBUG 2026/07/28 09:16:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:16:37 session energy: 0.172kWh
+[lp-1  ] DEBUG 2026/07/28 09:16:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:16:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:16:38 soc estimated: 60.28% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:16:38 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:16:38 plan: charge 48m56s between 2026-07-29 05:41:04 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:16:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:17:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:17:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:17:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:17:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:17:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:17:08 battery 1 soc: 54%
+[site  ] DEBUG 2026/07/28 09:17:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:17:08 session energy: 0.207kWh
+[lp-1  ] DEBUG 2026/07/28 09:17:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:17:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:17:08 soc estimated: 60.34% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:17:08 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:17:08 plan: charge 48m45s between 2026-07-29 05:41:15 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:17:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:17:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:17:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:17:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:17:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:17:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:17:37 battery 1 soc: 54%
+[site  ] DEBUG 2026/07/28 09:17:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:17:37 session energy: 0.241kWh
+[lp-1  ] DEBUG 2026/07/28 09:17:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:17:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:17:38 soc estimated: 60.39% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:17:38 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:17:38 plan: charge 48m34s between 2026-07-29 05:41:26 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:17:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:18:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:18:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:18:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:18:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:18:07 battery 1 soc: 53%
+[site  ] DEBUG 2026/07/28 09:18:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:18:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:18:07 session energy: 0.276kWh
+[lp-1  ] DEBUG 2026/07/28 09:18:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:18:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:18:08 soc estimated: 60.45% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:18:08 vehicle soc (estimator): 60%
+[lp-1  ] DEBUG 2026/07/28 09:18:08 plan: charge 48m22s between 2026-07-29 05:41:38 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:18:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:18:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:18:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:18:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:18:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:18:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:18:37 battery 1 soc: 53%
+[site  ] DEBUG 2026/07/28 09:18:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:18:38 session energy: 0.310kWh
+[lp-1  ] DEBUG 2026/07/28 09:18:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:18:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:18:38 soc estimated: 60.51% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:18:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:18:38 plan: charge 48m11s between 2026-07-29 05:41:49 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:18:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:19:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:19:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:19:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:19:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:19:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:19:07 battery 1 soc: 53%
+[site  ] DEBUG 2026/07/28 09:19:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:19:07 session energy: 0.345kWh
+[lp-1  ] DEBUG 2026/07/28 09:19:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:19:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:19:08 soc estimated: 60.56% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:19:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:19:08 plan: charge 48m0s between 2026-07-29 05:42:00 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:19:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:19:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:19:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:19:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:19:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:19:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:19:37 battery 1 soc: 53%
+[site  ] DEBUG 2026/07/28 09:19:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:19:37 session energy: 0.379kWh
+[lp-1  ] DEBUG 2026/07/28 09:19:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:19:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:19:38 soc estimated: 60.62% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:19:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:19:38 plan: charge 47m49s between 2026-07-29 05:42:11 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:19:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:20:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:20:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:20:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:20:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:20:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:20:08 battery 1 soc: 52%
+[site  ] DEBUG 2026/07/28 09:20:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:20:08 session energy: 0.414kWh
+[lp-1  ] DEBUG 2026/07/28 09:20:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:20:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:20:08 soc estimated: 60.68% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:20:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:20:08 plan: charge 47m37s between 2026-07-29 05:42:23 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:20:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:20:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:20:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:20:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:20:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:20:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:20:37 battery 1 soc: 52%
+[site  ] DEBUG 2026/07/28 09:20:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:20:37 session energy: 0.448kWh
+[lp-1  ] DEBUG 2026/07/28 09:20:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:20:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:20:38 soc estimated: 60.73% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:20:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:20:38 plan: charge 47m26s between 2026-07-29 05:42:34 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:20:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:21:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:21:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:21:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:21:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:21:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:21:07 battery 1 soc: 52%
+[site  ] DEBUG 2026/07/28 09:21:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:21:07 session energy: 0.483kWh
+[lp-1  ] DEBUG 2026/07/28 09:21:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:21:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:21:08 soc estimated: 60.79% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:21:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:21:08 plan: charge 47m15s between 2026-07-29 05:42:45 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:21:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:21:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:21:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:21:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:21:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:21:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:21:37 battery 1 soc: 52%
+[site  ] DEBUG 2026/07/28 09:21:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:21:37 session energy: 0.517kWh
+[lp-1  ] DEBUG 2026/07/28 09:21:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:21:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:21:38 soc estimated: 60.85% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:21:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:21:38 plan: charge 47m4s between 2026-07-29 05:42:56 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:21:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:22:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:22:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:22:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:22:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:22:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:22:07 battery 1 soc: 51%
+[site  ] DEBUG 2026/07/28 09:22:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:22:07 session energy: 0.552kWh
+[lp-1  ] DEBUG 2026/07/28 09:22:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:22:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:22:08 soc estimated: 60.90% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:22:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:22:08 plan: charge 46m52s between 2026-07-29 05:43:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:22:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:22:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:22:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:22:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:22:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:22:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:22:37 battery 1 soc: 51%
+[site  ] DEBUG 2026/07/28 09:22:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:22:37 session energy: 0.586kWh
+[lp-1  ] DEBUG 2026/07/28 09:22:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:22:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:22:38 soc estimated: 60.96% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:22:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:22:38 plan: charge 46m41s between 2026-07-29 05:43:19 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:22:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:23:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:23:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:23:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:23:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:23:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:23:07 battery 1 soc: 51%
+[site  ] DEBUG 2026/07/28 09:23:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:23:07 session energy: 0.621kWh
+[lp-1  ] DEBUG 2026/07/28 09:23:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:23:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:23:08 soc estimated: 61.02% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:23:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:23:08 plan: charge 46m30s between 2026-07-29 05:43:30 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:23:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:23:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:23:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:23:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:23:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:23:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:23:37 battery 1 soc: 51%
+[site  ] DEBUG 2026/07/28 09:23:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:23:37 session energy: 0.655kWh
+[lp-1  ] DEBUG 2026/07/28 09:23:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:23:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:23:38 soc estimated: 61.07% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:23:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:23:38 plan: charge 46m19s between 2026-07-29 05:43:41 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:23:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:24:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:24:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:24:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:24:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:24:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:24:07 battery 1 soc: 50%
+[site  ] DEBUG 2026/07/28 09:24:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:24:07 session energy: 0.690kWh
+[lp-1  ] DEBUG 2026/07/28 09:24:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:24:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:24:08 soc estimated: 61.13% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:24:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:24:08 plan: charge 46m7s between 2026-07-29 05:43:53 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:24:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:24:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:24:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:24:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:24:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:24:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:24:37 battery 1 soc: 50%
+[site  ] DEBUG 2026/07/28 09:24:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:24:37 session energy: 0.724kWh
+[lp-1  ] DEBUG 2026/07/28 09:24:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:24:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:24:38 soc estimated: 61.18% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:24:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:24:38 plan: charge 45m56s between 2026-07-29 05:44:04 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:24:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:25:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:25:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:25:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:25:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:25:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:25:07 battery 1 soc: 50%
+[site  ] DEBUG 2026/07/28 09:25:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:25:07 session energy: 0.759kWh
+[lp-1  ] DEBUG 2026/07/28 09:25:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:25:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:25:08 soc estimated: 61.24% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:25:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:25:08 plan: charge 45m45s between 2026-07-29 05:44:15 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:25:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:25:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:25:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:25:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:25:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:25:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:25:38 battery 1 soc: 50%
+[site  ] DEBUG 2026/07/28 09:25:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:25:38 session energy: 0.793kWh
+[lp-1  ] DEBUG 2026/07/28 09:25:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:25:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:25:38 soc estimated: 61.30% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:25:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:25:38 plan: charge 45m34s between 2026-07-29 05:44:26 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:25:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:26:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:26:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:26:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:26:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:26:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:26:07 battery 1 soc: 49%
+[site  ] DEBUG 2026/07/28 09:26:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:26:07 session energy: 0.828kWh
+[lp-1  ] DEBUG 2026/07/28 09:26:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:26:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:26:08 soc estimated: 61.35% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:26:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:26:08 plan: charge 45m22s between 2026-07-29 05:44:38 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:26:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:26:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:26:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:26:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:26:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:26:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:26:37 battery 1 soc: 49%
+[site  ] DEBUG 2026/07/28 09:26:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:26:37 session energy: 0.862kWh
+[lp-1  ] DEBUG 2026/07/28 09:26:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:26:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:26:38 soc estimated: 61.41% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:26:38 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:26:38 plan: charge 45m11s between 2026-07-29 05:44:49 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:26:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:27:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:27:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:27:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:27:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:27:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:27:07 battery 1 soc: 49%
+[site  ] DEBUG 2026/07/28 09:27:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:27:07 session energy: 0.897kWh
+[lp-1  ] DEBUG 2026/07/28 09:27:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:27:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:27:08 soc estimated: 61.47% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:27:08 vehicle soc (estimator): 61%
+[lp-1  ] DEBUG 2026/07/28 09:27:08 plan: charge 45m0s between 2026-07-29 05:45:00 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:27:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:27:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:27:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:27:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:27:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:27:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:27:38 battery 1 soc: 49%
+[site  ] DEBUG 2026/07/28 09:27:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:27:38 session energy: 0.932kWh
+[lp-1  ] DEBUG 2026/07/28 09:27:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:27:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:27:38 soc estimated: 61.52% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:27:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:27:38 plan: charge 44m49s between 2026-07-29 05:45:11 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:27:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:28:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:28:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:28:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:28:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:28:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:28:08 battery 1 soc: 48%
+[site  ] DEBUG 2026/07/28 09:28:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:28:08 session energy: 0.966kWh
+[lp-1  ] DEBUG 2026/07/28 09:28:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:28:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:28:08 soc estimated: 61.58% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:28:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:28:08 plan: charge 44m37s between 2026-07-29 05:45:23 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:28:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:28:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:28:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:28:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:28:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:28:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:28:37 battery 1 soc: 48%
+[site  ] DEBUG 2026/07/28 09:28:37 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:28:37 session energy: 1.000kWh
+[lp-1  ] DEBUG 2026/07/28 09:28:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:28:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:28:38 soc estimated: 61.64% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:28:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:28:38 plan: charge 44m26s between 2026-07-29 05:45:34 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:28:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:29:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:29:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:29:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:29:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:29:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:29:07 battery 1 soc: 48%
+[site  ] DEBUG 2026/07/28 09:29:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:29:07 session energy: 1.035kWh
+[lp-1  ] DEBUG 2026/07/28 09:29:07 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:29:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:29:08 soc estimated: 61.69% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:29:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:29:08 plan: charge 44m15s between 2026-07-29 05:45:45 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:29:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:29:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:29:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:29:37 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:29:37 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:29:37 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:29:38 battery 1 soc: 48%
+[site  ] DEBUG 2026/07/28 09:29:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:29:38 session energy: 1.069kWh
+[lp-1  ] DEBUG 2026/07/28 09:29:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:29:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:29:38 soc estimated: 61.75% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:29:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:29:38 plan: charge 44m4s between 2026-07-29 05:45:56 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:29:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:30:07 ----
+[lp-1  ] DEBUG 2026/07/28 09:30:07 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:30:07 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:30:07 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:30:07 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:30:07 battery 1 soc: 47%
+[site  ] DEBUG 2026/07/28 09:30:07 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:30:07 session energy: 1.104kWh
+[lp-1  ] DEBUG 2026/07/28 09:30:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:30:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:30:08 soc estimated: 61.80% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:30:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:30:08 plan: charge 43m52s between 2026-07-29 05:46:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:30:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:30:37 ----
+[lp-1  ] DEBUG 2026/07/28 09:30:37 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:30:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:30:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:30:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:30:38 battery 1 soc: 47%
+[site  ] DEBUG 2026/07/28 09:30:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:30:38 session energy: 1.138kWh
+[lp-1  ] DEBUG 2026/07/28 09:30:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:30:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:30:38 soc estimated: 61.86% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:30:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:30:38 plan: charge 43m41s between 2026-07-29 05:46:19 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:30:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:31:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:31:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:31:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:31:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:31:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:31:08 battery 1 soc: 47%
+[site  ] DEBUG 2026/07/28 09:31:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:31:08 session energy: 1.173kWh
+[lp-1  ] DEBUG 2026/07/28 09:31:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:31:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:31:08 soc estimated: 61.92% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:31:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:31:08 plan: charge 43m30s between 2026-07-29 05:46:30 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:31:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:31:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:31:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:31:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:31:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:31:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:31:38 battery 1 soc: 47%
+[site  ] DEBUG 2026/07/28 09:31:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:31:38 session energy: 1.207kWh
+[lp-1  ] DEBUG 2026/07/28 09:31:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:31:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:31:38 soc estimated: 61.97% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:31:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:31:38 plan: charge 43m19s between 2026-07-29 05:46:41 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:31:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:32:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:32:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:32:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:32:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:32:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:32:08 battery 1 soc: 47%
+[site  ] DEBUG 2026/07/28 09:32:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:32:08 session energy: 1.242kWh
+[lp-1  ] DEBUG 2026/07/28 09:32:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:32:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:32:08 soc estimated: 62.03% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:32:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:32:08 plan: charge 43m7s between 2026-07-29 05:46:53 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:32:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:32:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:32:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:32:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:32:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:32:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:32:38 battery 1 soc: 46%
+[site  ] DEBUG 2026/07/28 09:32:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:32:38 session energy: 1.276kWh
+[lp-1  ] DEBUG 2026/07/28 09:32:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:32:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:32:38 soc estimated: 62.09% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:32:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:32:38 plan: charge 42m56s between 2026-07-29 05:47:04 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:32:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:33:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:33:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:33:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:33:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:33:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:33:08 battery 1 soc: 46%
+[site  ] DEBUG 2026/07/28 09:33:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:33:08 session energy: 1.311kWh
+[lp-1  ] DEBUG 2026/07/28 09:33:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:33:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:33:08 soc estimated: 62.14% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:33:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:33:08 plan: charge 42m45s between 2026-07-29 05:47:15 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:33:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:33:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:33:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:33:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:33:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:33:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:33:38 battery 1 soc: 46%
+[site  ] DEBUG 2026/07/28 09:33:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:33:38 session energy: 1.345kWh
+[lp-1  ] DEBUG 2026/07/28 09:33:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:33:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:33:38 soc estimated: 62.20% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:33:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:33:38 plan: charge 42m34s between 2026-07-29 05:47:26 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:33:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:34:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:34:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:34:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:34:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:34:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:34:08 battery 1 soc: 46%
+[site  ] DEBUG 2026/07/28 09:34:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:34:08 session energy: 1.380kWh
+[lp-1  ] DEBUG 2026/07/28 09:34:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:34:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:34:08 soc estimated: 62.26% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:34:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:34:08 plan: charge 42m22s between 2026-07-29 05:47:38 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:34:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: true)
+[site  ] DEBUG 2026/07/28 09:34:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:34:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:34:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:34:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:34:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:34:38 battery 1 soc: 45%
+[site  ] DEBUG 2026/07/28 09:34:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:34:38 session energy: 1.414kWh
+[lp-1  ] DEBUG 2026/07/28 09:34:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:34:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:34:38 soc estimated: 62.31% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:34:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:34:38 plan: charge 42m11s between 2026-07-29 05:47:49 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:34:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:35:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:35:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:35:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:35:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:35:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:35:08 battery 1 soc: 45%
+[site  ] DEBUG 2026/07/28 09:35:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:35:08 session energy: 1.449kWh
+[lp-1  ] DEBUG 2026/07/28 09:35:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:35:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:35:08 soc estimated: 62.37% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:35:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:35:08 plan: charge 42m0s between 2026-07-29 05:48:00 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:35:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:35:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:35:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:35:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:35:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:35:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:35:38 battery 1 soc: 45%
+[site  ] DEBUG 2026/07/28 09:35:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:35:38 session energy: 1.483kWh
+[lp-1  ] DEBUG 2026/07/28 09:35:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:35:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:35:38 soc estimated: 62.42% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:35:38 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:35:38 plan: charge 41m49s between 2026-07-29 05:48:11 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:35:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:36:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:36:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:36:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:36:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:36:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:36:08 battery 1 soc: 45%
+[site  ] DEBUG 2026/07/28 09:36:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:36:08 session energy: 1.518kWh
+[lp-1  ] DEBUG 2026/07/28 09:36:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:36:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:36:08 soc estimated: 62.48% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:36:08 vehicle soc (estimator): 62%
+[lp-1  ] DEBUG 2026/07/28 09:36:08 plan: charge 41m37s between 2026-07-29 05:48:23 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:36:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:36:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:36:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:36:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:36:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:36:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:36:38 battery 1 soc: 44%
+[site  ] DEBUG 2026/07/28 09:36:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:36:38 session energy: 1.553kWh
+[lp-1  ] DEBUG 2026/07/28 09:36:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:36:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:36:38 soc estimated: 62.54% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:36:38 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:36:38 plan: charge 41m26s between 2026-07-29 05:48:34 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:36:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:37:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:37:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:37:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:37:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:37:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:37:08 battery 1 soc: 44%
+[site  ] DEBUG 2026/07/28 09:37:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:37:08 session energy: 1.587kWh
+[lp-1  ] DEBUG 2026/07/28 09:37:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:37:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:37:08 soc estimated: 62.59% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:37:08 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:37:08 plan: charge 41m15s between 2026-07-29 05:48:45 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:37:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:37:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:37:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:37:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:37:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:37:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:37:38 battery 1 soc: 44%
+[site  ] DEBUG 2026/07/28 09:37:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:37:38 session energy: 1.621kWh
+[lp-1  ] DEBUG 2026/07/28 09:37:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:37:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:37:38 soc estimated: 62.65% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:37:38 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:37:38 plan: charge 41m4s between 2026-07-29 05:48:56 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:37:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:38:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:38:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:38:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:38:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:38:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:38:08 battery 1 soc: 44%
+[site  ] DEBUG 2026/07/28 09:38:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:38:08 session energy: 1.656kWh
+[lp-1  ] DEBUG 2026/07/28 09:38:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:38:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:38:08 soc estimated: 62.71% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:38:08 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:38:08 plan: charge 40m52s between 2026-07-29 05:49:08 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:38:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:38:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:38:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:38:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:38:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:38:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:38:38 battery 1 soc: 43%
+[site  ] DEBUG 2026/07/28 09:38:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:38:38 session energy: 1.691kWh
+[lp-1  ] DEBUG 2026/07/28 09:38:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:38:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:38:38 soc estimated: 62.76% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:38:38 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:38:38 plan: charge 40m41s between 2026-07-29 05:49:19 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:38:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:39:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:39:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:39:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:39:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:39:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:39:08 battery 1 soc: 43%
+[site  ] DEBUG 2026/07/28 09:39:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:39:08 session energy: 1.725kWh
+[lp-1  ] DEBUG 2026/07/28 09:39:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:39:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:39:08 soc estimated: 62.82% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:39:08 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:39:08 plan: charge 40m30s between 2026-07-29 05:49:30 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:39:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:39:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:39:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:39:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:39:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:39:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:39:38 battery 1 soc: 43%
+[site  ] DEBUG 2026/07/28 09:39:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:39:38 session energy: 1.759kWh
+[lp-1  ] DEBUG 2026/07/28 09:39:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:39:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:39:38 soc estimated: 62.88% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:39:38 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:39:38 plan: charge 40m19s between 2026-07-29 05:49:41 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:39:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:40:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:40:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:40:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:40:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:40:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:40:08 battery 1 soc: 43%
+[site  ] DEBUG 2026/07/28 09:40:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:40:08 session energy: 1.794kWh
+[lp-1  ] DEBUG 2026/07/28 09:40:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:40:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:40:08 soc estimated: 62.93% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:40:08 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:40:08 plan: charge 40m7s between 2026-07-29 05:49:53 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:40:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:40:38 ----
+[lp-1  ] DEBUG 2026/07/28 09:40:38 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:40:38 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:40:38 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:40:38 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:40:38 battery 1 soc: 42%
+[site  ] DEBUG 2026/07/28 09:40:38 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:40:38 session energy: 1.828kWh
+[lp-1  ] DEBUG 2026/07/28 09:40:38 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:40:38 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:40:38 soc estimated: 62.99% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:40:38 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:40:38 plan: charge 39m56s between 2026-07-29 05:50:04 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:40:38 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)
+[site  ] DEBUG 2026/07/28 09:41:08 ----
+[lp-1  ] DEBUG 2026/07/28 09:41:08 charge power: 4140W
+[site  ] DEBUG 2026/07/28 09:41:08 battery 1 power: 4390W
+[site  ] DEBUG 2026/07/28 09:41:08 pv 1 power: 0W
+[site  ] DEBUG 2026/07/28 09:41:08 grid power: 0W
+[site  ] DEBUG 2026/07/28 09:41:08 battery 1 soc: 42%
+[site  ] DEBUG 2026/07/28 09:41:08 site power: 4390W
+[lp-1  ] DEBUG 2026/07/28 09:41:08 session energy: 1.863kWh
+[lp-1  ] DEBUG 2026/07/28 09:41:08 charger status: C
+[lp-1  ] DEBUG 2026/07/28 09:41:08 vehicle soc: 60%
+[lp-1  ] DEBUG 2026/07/28 09:41:08 soc estimated: 63.05% (vehicle: 60.00%)
+[lp-1  ] DEBUG 2026/07/28 09:41:08 vehicle soc (estimator): 63%
+[lp-1  ] DEBUG 2026/07/28 09:41:08 plan: charge 39m45s between 2026-07-29 05:50:15 +0200 CEST until 2026-07-29 06:30:00 +0200 CEST (power: 11040W, avg cost: 0.000)
+[lp-1  ] DEBUG 2026/07/28 09:41:08 pv charge current: min 6A > 0A (4390W @ 3p, battery: false)

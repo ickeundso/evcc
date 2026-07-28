@@ -1,0 +1,67 @@
+network:
+  port: 7099
+interval: 30s
+log: info
+levels:
+  lp-1: debug
+  site: debug
+
+site:
+  title: repro
+  meters:
+    grid: grid
+    pv: pv
+    battery: bat
+
+meters:
+  - name: grid
+    type: custom
+    power:
+      source: script
+      cmd: cat /tmp/repro/grid_power
+  - name: pv
+    type: custom
+    power:
+      source: script
+      cmd: cat /tmp/repro/pv_power
+  - name: bat
+    type: custom
+    power:
+      source: script
+      cmd: cat /tmp/repro/battery_power
+    soc:
+      source: script
+      cmd: cat /tmp/repro/battery_soc
+    capacity: 15
+
+chargers:
+  - name: wallbox
+    type: custom
+    status:
+      source: script
+      cmd: cat /tmp/repro/charger_status
+    enabled:
+      source: script
+      cmd: cat /tmp/repro/charger_enabled
+    enable:
+      source: script
+      cmd: sh -c 'echo {{.enable}} > /tmp/repro/charger_enabled'
+    maxcurrent:
+      source: script
+      cmd: sh -c 'echo {{.maxcurrent}} > /tmp/repro/charger_maxcurrent'
+
+vehicles:
+  - name: ev
+    type: custom
+    title: Zoe
+    capacity: 52
+    soc:
+      source: script
+      cmd: cat /tmp/repro/vehicle_soc
+
+loadpoints:
+  - title: Stellplatz
+    charger: wallbox
+    vehicle: ev
+    mode: minpv
+    phases: 1
