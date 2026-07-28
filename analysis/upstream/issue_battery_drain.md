@@ -59,8 +59,6 @@ run can be replayed as-is in about 30 minutes.
 ## Configuration details
 
 ```yaml
-# reproduction config (secrets-free); production system is UI-configured
-# with the same battery-usage values
 interval: 10s
 site:
   title: repro
