@@ -1,4 +1,6 @@
 # evcc feature request draft — paste into https://github.com/evcc-io/evcc/issues/new?template=feature_request.md
+# Issue 1 of 2: the template readings (for the already-open draft PR #32219).
+# File this FIRST; the wizard issue/PR follows separately.
 # (feature request, not bug: nothing crashes — the template just never wired the
 #  data points, so evcc falls back to its generic power estimate. Feature
 #  requests do not require trace logs.)
