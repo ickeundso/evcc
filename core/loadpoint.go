@@ -172,6 +172,7 @@ type Loadpoint struct {
 
 	// charge progress
 	vehicleSoc              float64       // Vehicle or charger soc
+	chargerLimitSoc         int           // Charger-reported soc/temperature limit (heating devices)
 	chargeDuration          time.Duration // Charge duration
 	connectedDuration       time.Duration // Connection duration
 	energyMetrics           EnergyMetrics // Stats for charged energy by session
@@ -1927,6 +1928,10 @@ func (lp *Loadpoint) publishSocAndRange() {
 	}
 
 	socR, limitR, _ := socAndLimit("charger", lp.charger)
+	if limitR != nil {
+		// remember the charger-reported limit as default for effectiveLimitSoc
+		lp.chargerLimitSoc = int(*limitR)
+	}
 	if socR == nil && (lp.vehicleSocPollAllowed() || lp.chargerHasFeature(api.IntegratedDevice)) {
 		var socErr error
 		socR, limitR, socErr = socAndLimit("vehicle", lp.GetVehicle())

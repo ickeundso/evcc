@@ -256,6 +256,12 @@ func (lp *Loadpoint) effectiveLimitSoc() int {
 		}
 	}
 
+	// heating devices: default to the limit the device itself reports (e.g. the
+	// heat pump's configured hot water target) instead of the generic 100
+	if lp.chargerLimitSoc > 0 && lp.chargerHasFeature(api.Heating) {
+		return lp.chargerLimitSoc
+	}
+
 	// MUST return 100 here as UI looks at effectiveLimitSoc and not limitSoc (VehicleSoc.vue)
 	return 100
 }

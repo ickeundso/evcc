@@ -286,3 +286,32 @@ func TestGetChargePowerFlexibility(t *testing.T) {
 		})
 	}
 }
+
+// heatingCharger is a charger stub with the Heating feature
+type heatingCharger struct {
+	api.Charger
+}
+
+func (c *heatingCharger) Features() []api.Feature { return []api.Feature{api.Heating} }
+
+func TestEffectiveLimitSocHeatingFallback(t *testing.T) {
+	lp := NewLoadpoint(util.NewLogger("foo"), nil)
+	lp.charger = &heatingCharger{}
+
+	// no device limit read yet -> generic default
+	assert.Equal(t, 100, lp.effectiveLimitSoc())
+
+	// device-reported limit becomes the default
+	lp.chargerLimitSoc = 60
+	assert.Equal(t, 60, lp.effectiveLimitSoc())
+
+	// user-configured limit wins
+	lp.limitSoc = 55
+	assert.Equal(t, 55, lp.effectiveLimitSoc())
+}
+
+func TestEffectiveLimitSocNonHeatingIgnoresChargerLimit(t *testing.T) {
+	lp := NewLoadpoint(util.NewLogger("foo"), nil)
+	lp.chargerLimitSoc = 60 // charger without Heating feature
+	assert.Equal(t, 100, lp.effectiveLimitSoc())
+}
