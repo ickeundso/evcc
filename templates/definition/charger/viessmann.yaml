@@ -43,7 +43,9 @@ params:
       en: Installation ID
     help:
       de: |
-        Wird nach der Anmeldung automatisch ermittelt. Falls das nicht funktioniert, kann die ID alternativ über die Kommandozeile ermittelt werden:<br/>
+        Wird nach der Anmeldung automatisch ermittelt.
+
+        <details><summary>Fallback: Installation ID per Kommandozeile ermitteln</summary>
 
         Vorraussetzungen: curl, jq, und die folgenden Umgebungsvariblen:
 
@@ -84,8 +86,12 @@ params:
           https://api.viessmann-climatesolutions.com/iot/v2/equipment/installations?includeGateways=true \
           | jq '.data[].id'
         ```
+
+        </details>
       en: |
-        Determined automatically after login. If that does not work, the id can alternatively be determined on the command line:<br/>
+        Determined automatically after login.
+
+        <details><summary>Fallback: determine the installation id on the command line</summary>
 
         Prerequisites: curl, jq, and the following parameters:
 
@@ -126,6 +132,8 @@ params:
           https://api.viessmann-climatesolutions.com/iot/v2/equipment/installations?includeGateways=true \
           | jq '.data[].id'
         ```
+
+        </details>
   - name: device_id
     required: true
     description:
