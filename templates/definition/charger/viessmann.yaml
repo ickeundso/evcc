@@ -166,7 +166,7 @@ render: |
     # call per cache window. The Viessmann API has a strict daily request quota
     # (shared with the ViCare app); per-feature polling exhausts it (HTTP 429).
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s # ~720 requests/day; raise further if you still hit 429
+    cache: 60s # ~1440 requests/day of the 1450/day Basic budget; raise to 120s if 429s appear
     auth:
       source: viessmann
       clientid: {{ .clientid }}
@@ -221,7 +221,7 @@ render: |
     # Same URL + cache as getmode -> served from the shared cached feature list.
     source: http
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s
+    cache: 60s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
@@ -234,7 +234,7 @@ render: |
     # temperature to display on the loadpoint gauge.
     source: http
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s
+    cache: 60s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
@@ -245,7 +245,7 @@ render: |
     # heating.dhw.temperature.main: configured DHW target temperature (°C).
     source: http
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s
+    cache: 60s
     auth:
       source: viessmann
       clientid: {{ .clientid }}

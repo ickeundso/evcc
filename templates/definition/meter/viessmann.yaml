@@ -67,7 +67,7 @@ render: |
     # (the Viessmann API has a strict daily quota shared with the ViCare app).
     source: http
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s
+    cache: 60s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
@@ -78,7 +78,7 @@ render: |
     # heating.dhw.sensors.temperature.dhwCylinder: domestic hot water temperature (°C).
     source: http
     uri: https://api.viessmann-climatesolutions.com/iot/v2/features/installations/{{.installation_id}}/gateways/{{.gateway_serial}}/devices/{{.device_id}}/features
-    cache: 120s
+    cache: 60s
     auth:
       source: viessmann
       clientid: {{ .clientid }}
